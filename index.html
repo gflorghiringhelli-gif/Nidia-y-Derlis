@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <title>Nidia & Derlis · Nuestra Boda</title>
+   
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+   <div id="toast" class="toast">¡Información copiada! 📋✨</div>
+
+   <!-- MÚSICA DE FONDO -->
+   <audio id="musicaInvitacion" preload="auto" loop>
+      <source src="img/musica.mp3" type="audio/mpeg">
+   </audio>
+
+   <div id="music-toggle" class="music-btn" onclick="toggleMusic()" style="display: none;">
+       <i class="fa-solid fa-music"></i>
+   </div>
+   
+   <!-- INTRO VIDEO DEL SOBRE (PANTALLA COMPLETA) -->
+   <div id="contenedor-principal" onclick="activarInvitacion()">
+       <video id="videoSobre" playsinline webkit-playsinline preload="auto" poster="img/sobre.png">
+           <source src="img/1.mp4" type="video/mp4">
+       </video>
+       <div id="capa-boton">
+           <div class="boton-rosa-inicio" id="btn-toca-abrir">TOCÁ EL SOBRE PARA ABRIR</div>
+       </div>
+   </div>
+
+   <!-- INVITACIÓN WEB EDITORIAL -->
+   <div id="seccion-final" class="oculto">
+
+       <div class="bloque-papel-textura">
+           
+           <!-- PORTADA LIMPIA Y EXPANDIDA SIN MARCOS -->
+           <header class="hero-portada-full reveal">
+               <img src="img/portada.png" onerror="this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80'" alt="Nidia y Derlis" class="portada-img-full">
+           </header>
+
+           <!-- SAVE THE DATE & GOOGLE CALENDAR -->
+           <section class="section-pad reveal text-center" id="std-section">
+               <h2 class="editorial-heading mt-2">SAVE THE DATE</h2>
+               <p class="section-sub-label">Tocá cada círculo para descubrir la fecha</p>
+
+               <div class="scratch-circles-wrapper mt-25" id="circlesWrapper" style="display: flex; justify-content: center; gap: 12px;">
+                   
+                   <!-- CÍRCULO DÍA -->
+                   <div class="circle-tap-card" onclick="revelarCirculo(this)" style="position: relative; width: 90px; height: 90px; border-radius: 50%; background: var(--celeste-bg); box-shadow: 0 6px 18px rgba(144, 175, 196, 0.3); display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; transition: transform 0.3s ease;">
+                       <span class="tap-text" style="font-family: var(--font-sans); font-size: 0.62rem; color: #ffffff; letter-spacing: 1px; font-weight: 600;">TOCÁ ACÁ</span>
+                       <div class="circle-hidden-content" style="display: none; flex-direction: column; justify-content: center; align-items: center;">
+                           <span class="circle-number" style="font-family: var(--font-serif); font-size: 1.6rem; font-weight: 600; color: #ffffff; line-height: 1;">19</span>
+                           <span class="circle-label" style="font-family: var(--font-sans); font-size: 0.55rem; letter-spacing: 1.5px; color: #f4f8fb; margin-top: 2px;">DÍA</span>
+                       </div>
+                   </div>
+
+                   <!-- CÍRCULO MES -->
+                   <div class="circle-tap-card" onclick="revelarCirculo(this)" style="position: relative; width: 90px; height: 90px; border-radius: 50%; background: var(--celeste-bg); box-shadow: 0 6px 18px rgba(144, 175, 196, 0.3); display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; transition: transform 0.3s ease;">
+                       <span class="tap-text" style="font-family: var(--font-sans); font-size: 0.62rem; color: #ffffff; letter-spacing: 1px; font-weight: 600;">TOCÁ ACÁ</span>
+                       <div class="circle-hidden-content" style="display: none; flex-direction: column; justify-content: center; align-items: center;">
+                           <span class="circle-number" style="font-family: var(--font-serif); font-size: 1.6rem; font-weight: 600; color: #ffffff; line-height: 1;">12</span>
+                           <span class="circle-label" style="font-family: var(--font-sans); font-size: 0.55rem; letter-spacing: 1.5px; color: #f4f8fb; margin-top: 2px;">MES</span>
+                       </div>
+                   </div>
+
+                   <!-- CÍRCULO AÑO -->
+                   <div class="circle-tap-card" onclick="revelarCirculo(this)" style="position: relative; width: 90px; height: 90px; border-radius: 50%; background: var(--celeste-bg); box-shadow: 0 6px 18px rgba(144, 175, 196, 0.3); display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; transition: transform 0.3s ease;">
+                       <span class="tap-text" style="font-family: var(--font-sans); font-size: 0.62rem; color: #ffffff; letter-spacing: 1px; font-weight: 600;">TOCÁ ACÁ</span>
+                       <div class="circle-hidden-content" style="display: none; flex-direction: column; justify-content: center; align-items: center;">
+                           <span class="circle-number" style="font-family: var(--font-serif); font-size: 1.3rem; font-weight: 600; color: #ffffff; line-height: 1;">2026</span>
+                           <span class="circle-label" style="font-family: var(--font-sans); font-size: 0.55rem; letter-spacing: 1.5px; color: #f4f8fb; margin-top: 2px;">AÑO</span>
+                       </div>
+                   </div>
+
+               </div>
+
+               <!-- GOOGLE CALENDAR -->
+               <div class="mt-20">
+                   <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+Nidia+%26+Derlis&dates=20261219T153000Z/20261220T040000Z&details=¡Nos+casamos!&location=Parroquia+San+Estanislao+-+Santaní" target="_blank" class="btn" style="background-color: var(--celeste-bg); color: #fff; border-radius: 30px; padding: 10px 22px; font-size: 0.65rem; letter-spacing: 2px; text-decoration: none;">
+                       <i class="fa-solid fa-calendar-plus"></i> Agendar en Google Calendar
+                   </a>
+               </div>
+
+               <div class="countdown-card" id="countdownCard">
+                   <p class="countdown-title">FALTAN POCOS DÍAS</p>
+                   <div class="countdown-boxes">
+                       <div class="cd-box"><span id="cd-days">00</span><p>Días</p></div>
+                       <div class="cd-sep">:</div>
+                       <div class="cd-box"><span id="cd-hours">00</span><p>Hs</p></div>
+                       <div class="cd-sep">:</div>
+                       <div class="cd-box"><span id="cd-mins">00</span><p>Min</p></div>
+                       <div class="cd-sep">:</div>
+                       <div class="cd-box"><span id="cd-secs">00</span><p>Seg</p></div>
+                   </div>
+               </div>
+           </section>
+
+           <!-- MENSAJE, PADRES Y NOVIOS -->
+           <section class="section-pad reveal">
+               <div class="invitarte-card verse-block-card">
+                   <div class="verse-couple-block">
+                       <p class="invite-quote mt-2">
+                           "Porque Él nos amó primero y nos unió en su propósito, hoy damos gracias a Dios y invitamos a nuestros seres queridos a la celebración de nuestra boda. Nos dará una inmensa alegría contar con tu presencia en este día tan especial y bendecido."
+                       </p>
+
+                       <div class="mt-25" style="font-size: 0.95rem; color: #555; line-height: 1.6;">
+                           <p style="margin-bottom: 4px;"><strong style="font-family: var(--font-sans); font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; color: var(--celeste-bg);">Padres de la Novia</strong></p>
+                           <p>Julián Osorio</p>
+                           <p style="margin-bottom: 15px;">Silvana Espíndola</p>
+
+                           <p style="margin-bottom: 4px;"><strong style="font-family: var(--font-sans); font-size: 0.68rem; letter-spacing: 2px; text-transform: uppercase; color: var(--celeste-bg);">Padres del Novio</strong></p>
+                           <p>Gerónimo Medina</p>
+                           <p>Limpia Torres</p>
+                       </div>
+
+                       <p class="celebran-text mt-20">Nos casamos</p>
+                       <h3 class="couple-names-block" style="font-family: 'Pinyon Script', cursive !important; font-size: 3.8rem;">Nidia & Derlis</h3>
+                   </div>
+               </div>
+           </section>
+
+           <!-- UBICACIONES -->
+           <section class="section-pad location-section-spacious reveal">
+               <div class="section-icon-header"><i class="fa-solid fa-location-dot"></i></div>
+               <h2 class="editorial-heading mt-2">UBICACIONES</h2>
+               <p class="title-sub-cursive">Dónde celebramos</p>
+
+               <div class="venue-card-watercolor mt-25">
+                   <div class="venue-custom-icon-wrap">
+                       <i class="fa-solid fa-church venue-fa-icon"></i>
+                   </div>
+                   <h3 class="venue-title">CEREMONIA RELIGIOSA</h3>
+                   <p class="venue-time">15:30 HS</p>
+                   <p class="venue-desc">Parroquia San Estanislao - Santaní</p>
+                   <div class="btn-group-center mt-15">
+                       <a href="https://maps.app.goo.gl/vuNAcJ3NXVUyy3tPA?g_st=iw" target="_blank" class="btn btn-outline-dark"><i class="fa-solid fa-map-location-dot"></i> Ver Mapa</a>
+                       <a href="https://maps.app.goo.gl/vuNAcJ3NXVUyy3tPA?g_st=iw" target="_blank" class="btn btn-outline-dark"><i class="fa-brands fa-waze"></i> Waze</a>
+                   </div>
+               </div>
+
+               <div class="venue-card-watercolor mt-35">
+                   <div class="venue-custom-icon-wrap">
+                       <i class="fa-solid fa-champagne-glasses venue-fa-icon"></i>
+                   </div>
+                   <h3 class="venue-title">CEREMONIA CIVIL Y RECEPCIÓN</h3>
+                   <p class="venue-time">18:30 HS</p>
+                   <p class="venue-desc">Casa de los padres de la Novia (Calle 8000 Defensores del Chaco) - Brindis a continuación</p>
+                   <div class="btn-group-center mt-15">
+                       <a href="https://maps.app.goo.gl/87dmsi6fxZHR73D37?g_st=iw" target="_blank" class="btn btn-outline-dark"><i class="fa-solid fa-map-location-dot"></i> Ver Mapa</a>
+                       <a href="https://maps.app.goo.gl/87dmsi6fxZHR73D37?g_st=iw" target="_blank" class="btn btn-outline-dark"><i class="fa-brands fa-waze"></i> Waze</a>
+                   </div>
+               </div>
+           </section>
+
+           <!-- DRESS CODE -->
+           <section class="section-pad reveal">
+               <div class="section-icon-header"><i class="fa-solid fa-shirt"></i></div>
+               <h2 class="editorial-heading mt-2">DRESS CODE</h2>
+               <p class="title-sub-cursive">Código de Vestimenta</p>
+               <p class="dress-code-subtitle mt-15">SPORT ELEGANTE</p>
+               
+               <div class="dress-card-elegant mt-20">
+                   <p class="dress-group-title">INDICACIÓN DE VESTUARIO</p>
+                   <p class="dress-desc">Para acompañarnos en este día tan especial.</p>
+                   <div class="dress-avoid-box mt-15" style="display: block; background-color: #f4f8fb; border: 1px solid rgba(144, 175, 196, 0.4); padding: 12px 14px; border-radius: 10px; text-align: center;">
+                       <span style="font-family: var(--font-sans); font-size: 0.62rem; letter-spacing: 2px; color: #555555; font-weight: 600; display: block; text-transform: uppercase;">Colores reservados</span>
+                       <span style="font-family: var(--font-garamond); font-style: italic; font-size: 1rem; color: var(--celeste-bg); display: block; margin-top: 4px;">Rogamos evitar los tonos blanco y crema.</span>
+                   </div>
+               </div>
+           </section>
+
+           <!-- SUGERENCIA DE REGALO -->
+           <section class="section-pad reveal text-center">
+               <div class="section-icon-header"><i class="fa-solid fa-gift"></i></div>
+               <h2 class="editorial-heading mt-2">SUGERENCIA DE REGALO</h2>
+               <p class="title-sub-cursive">Un detalle para nuestro gran día</p>
+
+               <div class="dress-card-elegant mt-20">
+                   <p class="dress-desc">Tu presencia es nuestro mejor regalo. Si deseas realizarnos un obsequio, puedes hacerlo mediante transferencia o en sobre el día del evento:</p>
+                   
+                   <div style="background: #f4f8fb; border: 1px solid #dcd7ce; border-radius: 10px; padding: 16px; margin-top: 15px; text-align: left; box-shadow: 0 4px 12px rgba(0,0,0,0.03);">
+                       <p style="font-size: 0.92rem; color: #333;"><strong>Nro. de Cédula / Cuenta:</strong> 5441514</p>
+                       <p style="font-size: 0.92rem; color: #333; margin-top: 6px;"><strong>Titular:</strong> Derlis Geronimo Medina Torres</p>
+                       
+                       <button onclick="copiarDatosBanco()" class="btn btn-editorial mt-15" style="width: 100%; text-align: center; background-color: var(--celeste-bg); color: #fff; padding: 12px; border-radius: 6px; font-weight: 600;">
+                           <i class="fa-regular fa-copy"></i> Copiar Datos de Regalo
+                       </button>
+                   </div>
+               </div>
+           </section>
+
+           <!-- ÁLBUM COLECTIVO -->
+           <section class="section-pad reveal text-center">
+               <div class="section-icon-header"><i class="fa-solid fa-camera-retro"></i></div>
+               <h2 class="editorial-heading mt-2">ÁLBUM COLECTIVO</h2>
+               <p class="title-sub-cursive">Compartí tus fotos y videos de la boda</p>
+
+               <div class="dress-card-elegant mt-20">
+                   <p class="dress-desc">Queremos revivir cada momento a través de tus ojos. Sube tus fotos y videos tomados durante la celebración en nuestro álbum compartido:</p>
+                   <a href="https://drive.google.com/drive/folders/1uOc0j64bJXRTy2ZE18fStHc-Dfd9z3vn?usp=sharing" target="_blank" class="btn btn-editorial mt-20" style="width: 100%; text-align: center; background-color: var(--celeste-bg); color: #fff; padding: 12px; border-radius: 6px; font-weight: 600; text-decoration: none; display: inline-block;">
+                       <i class="fa-solid fa-cloud-arrow-up"></i> SUBIR FOTOS AL ÁLBUM
+                   </a>
+               </div>
+           </section>
+
+       </div>
+
+       <!-- TARJETA CONFIRMACIÓN -->
+       <section class="section-pad reveal text-center">
+           <div class="tarjeta-celeste-rustica" style="background-color: var(--celeste-bg); color: #ffffff; width: 92%; max-width: 390px; margin: 10px auto; border-radius: 16px; padding: 35px 20px; box-shadow: 0 10px 30px rgba(144, 175, 196, 0.25); border: 1px solid rgba(255, 255, 255, 0.3);">
+               <h2 class="editorial-heading-light mt-2">CONFIRMACIÓN</h2>
+               <p class="title-sub-cursive-light">Esperamos contar contigo</p>
+               
+               <p class="rsvp-label-text mt-15">Fecha límite para confirmar asistencia:</p>
+               <p class="rsvp-date-highlight">14 / 12 / 2026</p>
+
+               <div class="btn-group-center mt-20" style="gap: 10px;">
+                   <a href="https://wa.me/595976905116?text=Hola!%20Quiero%20confirmar%20mi%20asistencia%20a%20la%20boda%20de%20Nidia%20y%20Derlis." class="btn btn-white-pill" target="_blank" style="background-color: #ffffff; color: var(--celeste-bg); border-radius: 30px; font-weight: 600; padding: 12px 24px; text-decoration: none;">
+                       <i class="fa-brands fa-whatsapp"></i> Confirmar por WhatsApp
+                   </a>
+               </div>
+           </div>
+       </section>
+
+       <!-- BLOQUE FINAL -->
+       <div class="bloque-celeste-liso" style="background-color: var(--celeste-bg); color: #ffffff; width: 100%; padding: 45px 15px 30px 15px; margin-top: 30px;">
+           <section class="section-pad reveal text-center">
+               <div class="farewell-signature mt-20">
+                   <p class="farewell-with-love-light">Con cariño,</p>
+                   <h2 class="farewell-couple-light" style="font-family: 'Pinyon Script', cursive !important; font-size: 4.5rem;">Nidia & Derlis</h2>
+               </div>
+           </section>
+
+           <footer class="editorial-footer-light" style="padding: 25px 20px 10px 20px; font-family: var(--font-sans); font-size: 9px; letter-spacing: 3px; color: #ffffff;">
+               <p>© GHISA DIGITAL · DESIGN STUDIO</p>
+           </footer>
+       </div>
+
+   </div>
+
+   <script src="script.js"></script>
+</body>
+</html>
